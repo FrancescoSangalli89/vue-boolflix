@@ -1,40 +1,39 @@
 <template>
     <main>
-        <div>
-
-        </div>
+        <ul>
+            <h2>Movies</h2>
+            <MyMovieCard v-for="(movie, index) in movieList" :key="index" :movie="movie" />
+        </ul>
+        <ul>
+            <h2>Series</h2>
+            <MyTvCard v-for="(serie, index) in serieList" :key="index" :serie="serie" />
+        </ul>
     </main>
 </template>
 
 <script>
 
-    import axios from 'axios';
+import MyMovieCard from './MyMovieCard.vue';
+import MyTvCard from './MyTvCard.vue';
 
 export default {
     name: 'MyMain',
+    components: {
+        MyMovieCard,
+        MyTvCard
+    },
     props: {
-        searchedMovie: String
+        movieList: Array,
+        serieList: Array
     },
     data() {
         return {
-            movies: [],
-            endpoint: `https://api.themoviedb.org/3/search/movie?api_key=af6fbe18e93f8959cb08c13e609cab58&query=2001&language=it-IT`,
-        }
-    },
-    methods: {
-        getMovies() {
-            if (this.searchedMovie != '') {
-                axios.get(this.endpoint)
-                .then(response => {
-                    console.log(this.endpoint)
-                    this.movies.push(response.data.results);
-                })
-            }
+            
         }
     }
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>

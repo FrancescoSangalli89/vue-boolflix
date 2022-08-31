@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <MyHeader @movieSearch="receivedMovie" />
-    <MyMain :searchedMovie="searchedMovie" />
+    <MyHeader @search="searching" />
+    <MyMain :movieList="movieList" :serieList="serieList" />
   </div>
 </template>
 
 <script>
 
 import MyHeader from './components/MyHeader.vue';
-import MyMain from './components/MyMain.vue'
+import MyMain from './components/MyMain.vue';
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -18,12 +19,30 @@ export default {
   },
   data() {
     return {
-      searchedMovie: ''
+      movieList: [],
+      serieList: [],
+      apiUrl: 'https://api.themoviedb.org/3',
+      apiKey: 'af6fbe18e93f8959cb08c13e609cab58',
+      language: 'it-IT'
     }
   },
   methods: {
-    receivedMovie(searchText) {
-      this.searchedMovie = searchText;
+    searching(searchText) {
+      axios.get(this.apiUrl + '/search/movie?api_key=' + this.apiKey + '&language=' + this.language + '&query=' + searchText)
+      .then(res => {
+        this.movieList = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      axios.get(this.apiUrl + '/search/tv?api_key=' + this.apiKey + '&language=' + this.language + '&query=' + searchText)
+      .then(res => {
+        this.serieList = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
     }
   }
 }
