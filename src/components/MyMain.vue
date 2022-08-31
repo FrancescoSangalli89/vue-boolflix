@@ -25,11 +25,6 @@ export default {
     props: {
         movieList: Array,
         serieList: Array
-    },
-    data() {
-        return {
-            
-        }
     }
 }
 </script>
