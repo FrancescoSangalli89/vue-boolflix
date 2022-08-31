@@ -1,10 +1,11 @@
 <template>
     <section>
         <li >
+            <img class="movieImg" :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path" alt="">
             <span>{{movie.title}} - </span>
             <span>{{movie.original_title}} - </span> 
-            <span v-if="getFlag(movie.original_language) == ''" >{{movie.original_language}} - </span>
-            <img v-else :src="getFlag(movie.original_language)" alt=""> -
+            <span v-if="getFlag(movie.original_language) == ''" >{{movie.original_language}} </span>
+            <img class="flagImg" :src="getFlag(movie.original_language)" alt="flag image"> -
             <span>{{movie.vote_average}}</span>
         </li>
     </section>
@@ -29,7 +30,12 @@ export default {
 </script>
 
 <style lang="scss">
-    img {
-        height: 20px;
+    section {
+        .movieImg {
+            height: 100px;
+        }
+        .flagImg {
+            height: 20px;
+        }
     }
 </style>

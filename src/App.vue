@@ -24,14 +24,6 @@ export default {
       apiUrl: 'https://api.themoviedb.org/3',
       apiKey: 'af6fbe18e93f8959cb08c13e609cab58',
       language: 'it-IT',
-      flags: {
-        'it': {
-          src: '../assets/images/it.svg'
-        },
-        'en': {
-          src: '../assets/images/gb.svg'
-        }
-      }
     }
   },
   methods: {
