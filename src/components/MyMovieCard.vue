@@ -1,11 +1,11 @@
 <template>
     <section>
         <li >
-            {{movie.title}} - 
-            {{movie.original_title}} - 
-            <img src="" alt="">
-            {{movie.original_language}} - 
-            {{movie.vote_average}}
+            <span>{{movie.title}} - </span>
+            <span>{{movie.original_title}} - </span> 
+            <span v-if="getFlag(movie.original_language) == ''" >{{movie.original_language}} - </span>
+            <img v-else :src="getFlag(movie.original_language)" alt=""> -
+            <span>{{movie.vote_average}}</span>
         </li>
     </section>
 </template>
@@ -16,36 +16,20 @@ export default {
     props: {
         movie: Object
     },
-    data() {
-        return {
-            flags: [
-                {
-                    language: 'en',
-                    src: '../assets/images/gb.svg',
-                    gotFlag: true
-                },
-                {
-                    language: 'it',
-                    src: '../assets/images/it.svg',
-                    gotFlag: true
-                },
-            ],
-            gotFlag: false
-        }
-    },
-    computed: {
-        getFlag() {
-            for (let i = 0; i < this.flags.length; i++) {
-                if (this.movie.original_language == en || this.movie.original_language == it) {
-                    this.movie.original_language = 
-                }
-                
-            }
+    methods: {
+        getFlag(lang){
+        let flags = ['en', 'it', 'fr', 'ja', 'ko', 'de'];
+        if(flags.includes(lang))
+            return require('../assets/images/' + lang + '.svg');
+        else
+            return '';
         }
     }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    img {
+        height: 20px;
+    }
 </style>
