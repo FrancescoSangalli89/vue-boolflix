@@ -17,5 +17,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+    header {
+        input {
+            margin: 10px 20px;
+        }
+    }
 </style>

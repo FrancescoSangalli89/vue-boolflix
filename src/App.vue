@@ -23,7 +23,7 @@ export default {
       serieList: [],
       apiUrl: 'https://api.themoviedb.org/3',
       apiKey: 'af6fbe18e93f8959cb08c13e609cab58',
-      language: 'it-IT',
+      language: 'it-IT'
     }
   },
   methods: {
@@ -31,13 +31,19 @@ export default {
       axios.get(this.apiUrl + '/search/movie?api_key=' + this.apiKey + '&language=' + this.language + '&query=' + searchText)
       .then(res => {
         this.movieList = res.data.results;
-        })
+        this.movieList.forEach(movie => {
+          movie.vote_average = Math.ceil(movie.vote_average / 2);
+        });
+      })
       .catch(err => {
         console.log(err);
       })
       axios.get(this.apiUrl + '/search/tv?api_key=' + this.apiKey + '&language=' + this.language + '&query=' + searchText)
       .then(res => {
         this.serieList = res.data.results;
+        this.serieList.forEach(serie => {
+          serie.vote_average = Math.ceil(serie.vote_average / 2);
+        });
       })
       .catch(err => {
         console.log(err);
@@ -49,5 +55,5 @@ export default {
 </script>
 
 <style lang="scss">
-
+@import '~@fortawesome/fontawesome-free/css/all.css';
 </style>
