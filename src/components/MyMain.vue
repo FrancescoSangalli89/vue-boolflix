@@ -2,25 +2,23 @@
     <main class="container cards-list">
         <h2 v-if="movieList.length !== 0">Movies</h2>
         <div>
-            <MyMovieCard v-for="(movie, index) in movieList" :key="index" :movie="movie" />
+            <MyCard v-for="(movie, index) in movieList" :key="index" :item="movie" />
         </div>
         <h2 v-if="serieList.length !== 0">Series</h2>
         <div>
-            <MyTvCard v-for="(serie, index) in serieList" :key="index" :serie="serie" />
+            <MyCard v-for="(serie, index) in serieList" :key="index" :item="serie" />
         </div>
     </main>
 </template>
 
 <script>
 
-import MyMovieCard from './MyMovieCard.vue';
-import MyTvCard from './MyTvCard.vue';
+import MyCard from './MyCard.vue';
 
 export default {
     name: 'MyMain',
     components: {
-        MyMovieCard,
-        MyTvCard
+        MyCard
     },
     props: {
         movieList: Array,
